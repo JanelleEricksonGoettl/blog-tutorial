@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  root 'weclome#index'
+  root 'welcome#index'
 end
