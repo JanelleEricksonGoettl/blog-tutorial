@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+  # this can be customized so that only ONE user can post with the name and password listed, but the password is NOT secure, here
+  http_basic_authenticate_with name: "juno", password: "KnowPassword", except: [:index, :show]
+  
   def index
     @articles = Article.all
   end
@@ -16,7 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @aritcle = Article.new(article_params)
+    @article = Article.new(article_params)
 
     if @article.save
       redirect_to @article
