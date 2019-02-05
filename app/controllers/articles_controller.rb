@@ -16,12 +16,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @aritcle = Article.new(article_params) #(params[:article])
+    @aritcle = Article.new(article_params)
 
     if @article.save
       redirect_to @article
     else
-      # render allows the @article object to pass back to the new template when it's rendered, within the same request as the form submission
       render 'new'
     end
   end
@@ -36,9 +35,15 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to articles_path
+  end
+
   private
     def article_params
       params.require(:article).permit(:title, :text)
     end
-
 end
